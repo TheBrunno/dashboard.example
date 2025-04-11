@@ -1,0 +1,145 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    display: flex;
+}
+
+body>div {
+    height: 100vh;
+}
+
+.user {
+    background-color: #e6e6e6;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 104px;
+    box-sizing: border-box;
+}
+
+.dash {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-sizing: border-box;
+    padding-top: 80px;
+    justify-content: center;
+}
+
+nav {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 0 105px 0 65px;
+}
+
+.profile {
+    width: 80%;
+}
+
+.profile .picture img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+h2 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+    font-weight: 400;
+}
+
+.row {
+    display: flex;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.171);
+    width: 90%;
+    height: 45%;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.kpi {
+    flex: 4;
+    height: 100%;
+    position: relative;
+}
+
+.graph {
+    flex: 8;
+    height: 100%;
+}
+
+.graph_canvas {
+    padding: 20px 30px 0 30px;
+}
+
+nav .logo img {
+    height: 70px;
+}
+
+nav .links ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 96px;
+}
+
+nav .links ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.main {
+    border: 1px #fff solid;
+    padding: 5px 20px;
+    border-radius: 4px;
+    transition: 0.25s;
+}
+
+.main:hover {
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.60);
+    box-shadow: 0 0 5px 3px #ffffff3b;
+}
+
+#kpi_one {
+    padding: 20px 0 20px 30px;
+}
+#kpi_two{
+    padding: 20px;
+}
+.kpi_ind, .kpi_ind2{
+    text-align: center;
+    position: absolute;
+}
+.kpi_ind{
+    top: 192px;
+    left: 158px;
+}
+.kpi_ind2{
+    top: 190px;
+    left: 164px;
+}
+.kpi_destaque{
+    font-size: 25px;
+    font-weight: 700;
+    color: #e40000;
+}
