@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | ChartJS Examples</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body{
+            display: flex;
+        }
+        body > div{
+            height: 100vh;
+        }
+        .user{
+            background-color: red;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 104px;
+            box-sizing: border-box;
+        }
+        .dash{
+            background-color: blue;
+            flex: 4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            box-sizing: border-box;
+            padding-top: 80px;
+            justify-content: center;
+        }
+        nav{
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            height: 80px;
+            background-color: green;
+        }
+        .profile{
+            width: 80%;
+        }
+        .profile .picture img{
+            width: 100%;
+            border-radius: 50%;
+        }
+        h2{
+            margin-top: 10px;
+            text-align: center;
+        }
+        h4{
+            text-align: center;
+            font-weight: 400;
+        }
+        .row{
+            display: flex;
+            background-color: yellow;
+            width: 90%;
+            height: 45%;
+            align-items: center;
+        }
+        .kpi{
+            flex: 3;
+            height: 100%;
+            background-color: magenta;
+        }
+        .graph{
+            flex: 8;
+            height: 100%;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <nav></nav>
+    <div class="user">
+        <div class="profile">
+            <div class="picture">
+                <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg">
+            </div>
+            <h2>
+                Bruno Oliveira
+            </h2>
+            <h4>Analista</h4>
+        </div>
+    </div>
+    <div class="dash">
+        <div class="row">
+            <div class="kpi">
+
+            </div>
+            <div class="graph">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="graph">
+
+            </div>
+            <div class="kpi">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
