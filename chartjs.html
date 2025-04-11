@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | ChartJS Examples</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
-        body{
+
+        body {
             display: flex;
         }
-        body > div{
+
+        body>div {
             height: 100vh;
         }
-        .user{
-            background-color: red;
+
+        .user {
+            background-color: #e6e6e6;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -26,8 +29,8 @@
             padding-top: 104px;
             box-sizing: border-box;
         }
-        .dash{
-            background-color: blue;
+
+        .dash {
             flex: 4;
             display: flex;
             flex-direction: column;
@@ -37,55 +40,138 @@
             padding-top: 80px;
             justify-content: center;
         }
-        nav{
+
+        nav {
+            box-sizing: border-box;
             position: fixed;
             top: 0;
             width: 100vw;
             display: flex;
             align-items: center;
             height: 80px;
-            background-color: green;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 0 105px 0 65px;
         }
-        .profile{
+
+        .profile {
             width: 80%;
         }
-        .profile .picture img{
+
+        .profile .picture img {
             width: 100%;
             border-radius: 50%;
         }
-        h2{
+
+        h2 {
             margin-top: 10px;
             text-align: center;
         }
-        h4{
+
+        h4 {
             text-align: center;
             font-weight: 400;
         }
-        .row{
+
+        .row {
             display: flex;
-            background-color: yellow;
+            box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.171);
             width: 90%;
             height: 45%;
             align-items: center;
+            border-radius: 15px;
         }
-        .kpi{
-            flex: 3;
+
+        .kpi {
+            flex: 4;
             height: 100%;
-            background-color: magenta;
+            position: relative;
         }
-        .graph{
+
+        .graph {
             flex: 8;
             height: 100%;
-            background-color: brown;
+        }
+
+        .graph_canvas {
+            padding: 20px 30px 0 30px;
+        }
+
+        nav .logo img {
+            height: 70px;
+        }
+
+        nav .links ul {
+            display: flex;
+            list-style-type: none;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 96px;
+        }
+
+        nav .links ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .main {
+            border: 1px #fff solid;
+            padding: 5px 20px;
+            border-radius: 4px;
+            transition: 0.25s;
+        }
+
+        .main:hover {
+            background-color: #fff;
+            color: rgba(0, 0, 0, 0.60);
+            box-shadow: 0 0 5px 3px #ffffff3b;
+        }
+
+        #kpi_one {
+            padding: 20px 0 20px 30px;
+        }
+        #kpi_two{
+            padding: 20px;
+        }
+        .kpi_ind, .kpi_ind2{
+            text-align: center;
+            position: absolute;
+        }
+        .kpi_ind{
+            top: 192px;
+            left: 158px;
+        }
+        .kpi_ind2{
+            top: 190px;
+            left: 164px;
+        }
+        .kpi_destaque{
+            font-size: 25px;
+            font-weight: 700;
+            color: #e40000;
         }
     </style>
 </head>
+
 <body>
-    <nav></nav>
+    <nav>
+        <div class="logo">
+            <img src="images/logo.svg" alt="logo">
+        </div>
+        <div class="links">
+            <ul>
+                <li><a href="">Sobre nós</a></li>
+                <li><a href="">Orçamento</a></li>
+                <li><a href=""><span class="main">Dashboard</span></a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="user">
         <div class="profile">
             <div class="picture">
-                <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg">
+                <img
+                    src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg">
             </div>
             <h2>
                 Bruno Oliveira
@@ -96,21 +182,215 @@
     <div class="dash">
         <div class="row">
             <div class="kpi">
-
+                <div class="kpi_ind2">
+                    <span>Crítico:</span>
+                    <br>
+                    <span class="kpi_destaque">16:00h</span>
+                </div>
+                <canvas id="kpi_one"></canvas>
             </div>
             <div class="graph">
-
+                <canvas id="graph_one" class="graph_canvas"></canvas>
             </div>
         </div>
         <div class="row">
             <div class="graph">
-
+                <canvas id="graph_two" class="graph_canvas"></canvas>
             </div>
             <div class="kpi">
-
+                <div class="kpi_ind">
+                    <span>Crítico:</span>
+                    <br>
+                    <span class="kpi_destaque">Março</span>
+                </div>
+                <canvas id="kpi_two"></canvas>
             </div>
         </div>
     </div>
 
 </body>
+
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const canvas1 = document.getElementById('graph_one');
+    const canvas2 = document.getElementById('graph_two');
+    const kpi1 = document.getElementById('kpi_one');
+    const kpi2 = document.getElementById('kpi_two');
+
+    new Chart(canvas1, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [30, 29, 28, 25, 22, 23],
+                fill: false,
+                borderColor: '#006DAC',
+                backgroundColor: '#006DAC',
+                tension: 0.3,
+                order: 1
+            },
+            {
+                label: 'Umidade',
+                data: [80, 82, 80, 85, 80, 83],
+                type: 'line',
+                order: 2,
+                fill: false,
+                borderColor: '#002640',
+                backgroundColor: '#002640',
+                tension: 0.3,
+            },
+            {
+                label: 'Umidade ideal',
+                data: [82, 82, 82, 82, 82, 82],
+                type: 'line',
+                order: 3,
+                fill: false,
+                borderColor: '#5bfd4c',
+                borderDash: [5, 5],
+                tension: 0.3,
+            },
+            {
+                label: 'Temperatura ideal',
+                data: [27, 27, 27, 27, 27, 27],
+                type: 'line',
+                order: 4,
+                fill: false,
+                borderColor: '#5bfd4c',
+                borderDash: [5, 5],
+                tension: 0.3,
+            }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                subtitle: {
+                    display: true,
+                    text: 'Temperatura e umidade nas ultimas horas'
+                }
+            }
+        }
+    });
+
+    new Chart(canvas2, {
+        type: 'bar',
+        data: {
+            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+            datasets: [{
+                label: 'Temperatura média',
+                data: [22, 24, 27, 23, 20, 18],
+                fill: false,
+                borderColor: '#006DAC',
+                backgroundColor: '#006DAC',
+                tension: 0.3,
+                order: 2
+            },
+            {
+                label: 'Umidade média',
+                data: [90, 89, 93, 87, 88, 82],
+                type: 'bar',
+                order: 1,
+                fill: false,
+                borderColor: '#002640',
+                backgroundColor: '#002640',
+                tension: 0.3,
+            },
+            {
+                label: 'Umidade ideal',
+                data: [82, 82, 82, 82, 82, 82],
+                type: 'line',
+                order: 3,
+                fill: false,
+                borderColor: '#5bfd4c',
+                borderDash: [5, 5],
+                tension: 0.3,
+            },
+            {
+                label: 'Temperatura ideal',
+                data: [27, 27, 27, 27, 27, 27],
+                type: 'line',
+                order: 4,
+                fill: false,
+                borderColor: '#5bfd4c',
+                borderDash: [5, 5],
+                tension: 0.3,
+            }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                subtitle: {
+                    display: true,
+                    text: 'Temperatura e umidade média mensalmente'
+                }
+            }
+        }
+    });
+
+    new Chart(kpi1, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'Temperatura',
+                'Umidade'
+            ],
+            datasets: [{
+                data: [6, 5],
+                backgroundColor: [
+                    '#006DAC',
+                    '#002640',
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            plugins: {
+                subtitle: {
+                    display: true,
+                    text: 'Quantidade de horas fora do ideal'
+                }
+            }
+        }
+    });
+
+    new Chart(kpi2, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'Temperatura',
+                'Umidade'
+            ],
+            datasets: [{
+                data: [5, 5],
+                backgroundColor: [
+                    '#006DAC',
+                    '#002640',
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            plugins: {
+                subtitle: {
+                    display: true,
+                    text: 'Quantidade da média de meses fora do ideal'
+                }
+            }
+        }
+    });
+
+
+</script>
