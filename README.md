@@ -18,7 +18,7 @@ O sistema simula a coleta de dados em tempo real e os exibe em gráficos interat
 
 ## 📐 Parâmetros considerados ideais
 
-- **Temperatura ideal:** aproximadamente **27°C**
+- **Temperatura:** aproximadamente **27°C**
 - **Umidade:** aproximadamente **82%**
 
 ## 🛠️ Tecnologias Utilizadas
